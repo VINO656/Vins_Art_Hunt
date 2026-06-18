@@ -1,10 +1,13 @@
 /* ── Hero ── */
 .hero {
   position: relative;
-  min-height: max(100vh, 850px);
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 160px; /* Predictable offset from top */
+  padding-bottom: 80px;
   overflow: hidden;
 }
 
@@ -39,8 +42,6 @@
   color: var(--parchment);
   max-width: 700px;
   padding: 0 2rem;
-  margin-top: 100px; /* Force shift down to avoid navbar overlap */
-  margin-bottom: 80px; /* Avoid scroll indicator overlap */
   animation: fadeUp 1s var(--ease) both;
 }
 
