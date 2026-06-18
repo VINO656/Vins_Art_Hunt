@@ -13,16 +13,19 @@ router.post('/update-password', adminAuth, (req, res) => {
 
   const envPath = path.join(__dirname, '..', '.env');
   try {
-    let envContent = fs.readFileSync(envPath, 'utf8');
-    
-    // Check if ADMIN_PASSWORD exists in the file
-    if (envContent.includes('ADMIN_PASSWORD=')) {
-      envContent = envContent.replace(/ADMIN_PASSWORD=.*/g, `ADMIN_PASSWORD=${newPassword}`);
-    } else {
-      envContent += `\nADMIN_PASSWORD=${newPassword}\n`;
+    // Only attempt to update .env if it exists (local development)
+    if (fs.existsSync(envPath)) {
+      let envContent = fs.readFileSync(envPath, 'utf8');
+      
+      if (envContent.includes('ADMIN_PASSWORD=')) {
+        envContent = envContent.replace(/ADMIN_PASSWORD=.*/g, `ADMIN_PASSWORD=${newPassword}`);
+      } else {
+        envContent += `\nADMIN_PASSWORD=${newPassword}\n`;
+      }
+      fs.writeFileSync(envPath, envContent, 'utf8');
     }
 
-    fs.writeFileSync(envPath, envContent, 'utf8');
+    // Update in-memory for the current session (critical for production)
     process.env.ADMIN_PASSWORD = newPassword;
 
     res.json({ message: 'Password updated successfully' });
