@@ -38,7 +38,7 @@
   text-align: center;
   color: var(--parchment);
   max-width: 700px;
-  padding: 0 2rem;
+  padding: 80px 2rem 0 2rem;
   animation: fadeUp 1s var(--ease) both;
 }
 

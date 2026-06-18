@@ -32,4 +32,21 @@ router.post('/update-password', adminAuth, (req, res) => {
   }
 });
 
+// POST verify password
+router.post('/verify-password', (req, res) => {
+  const { password } = req.body;
+  const adminPassword = process.env.ADMIN_PASSWORD;
+
+  if (!adminPassword) {
+    return res.status(500).json({ error: 'Server configuration error' });
+  }
+
+  if (password === adminPassword) {
+    res.json({ success: true });
+  } else {
+    res.status(401).json({ error: 'Invalid password' });
+  }
+});
+
+
 module.exports = router;
