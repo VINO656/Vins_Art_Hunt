@@ -1,7 +1,7 @@
 /* ── Hero ── */
 .hero {
   position: relative;
-  min-height: 95vh;
+  min-height: max(100vh, 850px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +38,9 @@
   text-align: center;
   color: var(--parchment);
   max-width: 700px;
-  padding: 80px 2rem 0 2rem;
+  padding: 0 2rem;
+  margin-top: 100px; /* Force shift down to avoid navbar overlap */
+  margin-bottom: 80px; /* Avoid scroll indicator overlap */
   animation: fadeUp 1s var(--ease) both;
 }
 
