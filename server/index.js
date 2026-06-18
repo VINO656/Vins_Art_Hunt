@@ -24,6 +24,7 @@ app.use('/api/orders', require('./routes/orders'));
 app.use('/api/contact', require('./routes/contact'));
 app.use('/api/payment', require('./routes/payment'));
 app.use('/api/upload', require('./routes/upload'));
+app.use('/api/admin', require('./routes/admin'));
 
 if (fs.existsSync(clientBuildPath)) {
   app.get('*', (req, res, next) => {
